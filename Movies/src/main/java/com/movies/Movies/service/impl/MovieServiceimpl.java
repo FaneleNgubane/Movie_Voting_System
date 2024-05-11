@@ -26,6 +26,11 @@ public class MovieServiceimpl implements MovieService {
         return movies.stream().map((movie) -> mapToMovieDto(movie)).collect(Collectors.toList());
     }
 
+    @Override
+    public Movie saveMovie(Movie movie) {
+        return movieRepository.save(movie);
+    }
+
     private MovieDto mapToMovieDto(Movie movie) {
         MovieDto movieDto = MovieDto.builder()
                 .id(movie.getId())

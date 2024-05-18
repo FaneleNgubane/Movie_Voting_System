@@ -31,6 +31,30 @@ public class MovieServiceimpl implements MovieService {
         return movieRepository.save(movie);
     }
 
+    @Override
+    public MovieDto findMovieById(long movieId) {
+        Movie movie = movieRepository.findById(movieId).get();
+        return mapToMovieDto(movie);
+    }
+
+    @Override
+    public void updateMovie(MovieDto movieDto) {
+        Movie movie = mapToMovie(movieDto);
+        movieRepository.save(movie);
+    }
+
+    private Movie mapToMovie(MovieDto movie) {
+        Movie movieDto = Movie.builder()
+                .id(movie.getId())
+                .title(movie.getTitle())
+                .PhotoUrl(movie.getPhotoUrl())
+                .content(movie.getContent())
+                .createdOn(movie.getCreatedOn())
+                .updatedOn(movie.getUpdatedOn())
+                .build();
+        return movieDto;
+    }
+
     private MovieDto mapToMovieDto(Movie movie) {
         MovieDto movieDto = MovieDto.builder()
                 .id(movie.getId())

@@ -15,11 +15,13 @@
                 <p class="lead fw-normal text-muted mb-0">Movie near you</p>
             </div>
             <div class="row gx-2">
-                <div th:each="club :${movies}" class="col-lg-4">
-                    <div class="position-relative mb-2 movie-container">
-                        <img class="img-fluid rounded-3 mb-3" th:src="${club.photoUrl}" alt="..." />
-                        <h2><a th:text="${club.title}" class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a></h2>
+                <div th:each="movie :${movies}" class="col-lg-4 mb-2">
+                    <div class="position-relative mb-3 movie-container">
+                        <img class="img-fluid rounded-3 mb-3" th:src="${movie.photoUrl}" alt="..." />
+                        <a th:text="${movie.title}" class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
                     </div>
+<!--                    <a class="btn btn-primary" th:href="@{/movies/{movieId}/edit(movieId=${movie.id})}">Edit</a>-->
+                    <a class="btn btn-primary" th:href="@{/movies/{movieId}/edit(movieId=${movie.id})}">Edit</a>
                 </div>
             </div>
             </div>
